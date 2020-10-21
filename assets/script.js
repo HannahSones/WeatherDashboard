@@ -33,13 +33,18 @@ $("#searchBtn").click(function searchWeather() {
         const currentTemp = weatherData.main.temp;
         const currentHumidity = weatherData.main.humidity;
         const currentWind = weatherData.wind.speed;
+
+        const weatherIcon = weatherData.weather[0].icon;
+        const getWeatherIcon = "http://openweathermap.org/img/wn/";
+        const weatherIconURL = getWeatherIcon + weatherIcon + ".png";
+        console.log(weatherIconURL)
         
         $("#cityName").text(cityName + ' (' + date + ') ');
-        // $("currentWeatherImg").attr('src', weatherIconURL);
+        $("#currentWeatherImg").attr("src", weatherIconURL);
         $("#currentTemp").text("Temperature: " + currentTemp + " °F");
         $("#currentHumidity").text("Humidity: " + currentHumidity + " %");
         $("#currentWind").text("Wind Speed: " + currentWind + " MPH");
-        // $("#currentUVIndex").text("Temperature:" + currentUVIndex);
+        // $("#currentUVIndex").text("UV Index:" + currentUVIndex);
 
 
 
