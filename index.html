@@ -5,10 +5,140 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/style.css" />
-  
+
   <title>Weather Dashboard</title>
 </head>
+
+<body class="heroImage">
+
+  <!-- Weather dashboard header -->
+  <header class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Weather Dashboard</h1>
+      </div>
+    </div>
+  </header>
+
+
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Search function on the left hand side -->
+
+      <aside class="col-md-3 whiteBox">
+        <h3>Search by city:</h3>
+        <form>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter city" aria-label="Enter city">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+        <hr />
+        <h5>Your search history:</h5>
+        <div id="previousSearches"></div>
+        <br />
+        <button type="button" id="clearSearchHistory" class="btn btn-danger">Clear search history</button>
+      </aside>
+
+      <!-- Pulled in data from the Open weather API -->
+      <!-- Today's weather info -->
+
+      <section class="col-md-9 whiteBox">
+        <div class="todayWeatherBox">
+          <h2 id="cityName"></h2>
+          <p id="todayTemp"></p>
+          <p id="todayHumidity"></p>
+          <p id="todayWind"></p>
+          <p id="todayUVIndex"></p>
+        </div>
+
+        <!-- 5 day forecast -->
+
+        <div id="5DayForecast">
+          <h3>Five day forecast:</h3>
+        </div>
+
+        <div class="card-group">
+          <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-body text-dark">
+              <h5 class="card-title" id="1fiveDayDate">Date</h5>
+              <img id="1fiveDayIcon" src="">
+              <p class="card-text" id="1fiveDayTemp">Temperature</p>
+              <p class="card-text" id="1fiveDayHumidity">Humidity</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+          <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-body text-dark">
+              <h5 class="card-title" id="2fiveDayDate">Date</h5>
+              <img id="2fiveDayIcon" src="">
+              <p class="card-text" id="2fiveDayTemp">Temperature</p>
+              <p class="card-text" id="2fiveDayHumidity">Humidity</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+          <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-body text-dark">
+              <h5 class="card-title" id="3fiveDayDate">Date</h5>
+              <img id="3fiveDayIcon" src="">
+              <p class="card-text" id="3fiveDayTemp">Temperature</p>
+              <p class="card-text" id="3fiveDayHumidity">Humidity</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+          <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-body text-dark">
+              <h5 class="card-title" id="4fiveDayDate">Date</h5>
+              <img id="4fiveDayIcon" src="">
+              <p class="card-text" id="4fiveDayTemp">Temperature</p>
+              <p class="card-text" id="4fiveDayHumidity">Humidity</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+          <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-body text-dark">
+              <h5 class="card-title" id="5fiveDayDate">Date</h5>
+              <img id="5fiveDayIcon" src="">
+              <p class="card-text" id="5fiveDayTemp">Temperature</p>
+              <p class="card-text" id="5fiveDayHumidity">Humidity</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
+
+
+  <footer>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="assets/script.js"></script>
+
+</body>
+
+</html>
