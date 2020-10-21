@@ -50,15 +50,13 @@ h5 {
 
 .whiteBox {
     background-color: white;
-    /* border: solid;
-    border-width: 1px;
-    border-color: #0b212f; */
+    border: solid;
+    padding: 15px;
+    border-color: white;
 }
 
-Button and search bar
 
-
-/* missing div styling */
+/* Hidden elements styling */
 
 .todayWeatherBox {
     border: solid;
@@ -69,12 +67,25 @@ Button and search bar
     display: none;
 }
 
+.currentForecast {
+    border: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    padding-top: 10px;
+}
+
+#fiveDayForecast {
+    display: none;
+    padding-top: 15px;
+}
+
 
 /* Card styling */
 
 .card-body {
     background-color: white;
 }
+
 
 /* footer */
 footer {
