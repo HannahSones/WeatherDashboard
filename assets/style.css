@@ -50,9 +50,9 @@ h5 {
 
 .whiteBox {
     background-color: white;
-    border: solid;
+    /* border: solid;
     border-width: 1px;
-    border-color: #0b212f;
+    border-color: #0b212f; */
 }
 
 Button and search bar
@@ -65,9 +65,23 @@ Button and search bar
     border: black;
 }
 
+#errorMsg {
+    display: none;
+}
+
 
 /* Card styling */
 
 .card-body {
     background-color: white;
 }
+
+/* footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #0b212f;
+    color: white;
+    text-align: center;
+  }

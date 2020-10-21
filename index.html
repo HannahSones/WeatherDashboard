@@ -27,16 +27,16 @@
 
 
 
-  <div class="container-fluid">
+  <div class="container-fluid h-100">
     <div class="row">
 
       <!-- Search function on the left hand side -->
 
       <aside class="col-md-3 whiteBox">
         <h3>Search by city:</h3>
-        <form>
+        <form id="citySearch">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Enter city" aria-label="Enter city">
+            <input type="text" name="city" class="form-control" placeholder="Enter city" aria-label="Enter city">
             <div class="input-group-append">
               <button class="btn btn-primary" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
             </div>
@@ -47,13 +47,17 @@
         <div id="previousSearches"></div>
         <br />
         <button type="button" id="clearSearchHistory" class="btn btn-danger">Clear search history</button>
+        <br />
+        <div class="alert alert-danger" id="errorMsg" role="alert">
+          City not found.
+        </div>
       </aside>
 
       <!-- Pulled in data from the Open weather API -->
       <!-- Today's weather info -->
 
       <section class="col-md-9 whiteBox">
-        <div class="todayWeatherBox">
+        <div class="currentForecast">
           <h2 id="cityName"></h2>
           <p id="todayTemp"></p>
           <p id="todayHumidity"></p>
@@ -131,8 +135,8 @@
   </div>
 
 
-  <footer>
-
+  <footer class="fixed-bottom">
+      <p>Copyright &copy | Hannah Sones</p>
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
