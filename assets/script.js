@@ -29,20 +29,21 @@ $("#searchBtn").click(function searchWeather() {
 
     function updateResults(weatherData) {
         console.log(weatherData)
+
+        const currentTemp = weatherData.main.temp;
+        const currentHumidity = weatherData.main.humidity;
+        const currentWind = weatherData.wind.speed;
         
         $("#cityName").text(cityName + ' (' + date + ') ');
-
-        // const currentWeatherIcon = results.weather.icon;
-        // const currentTemp = results.main.temp;
-        // const currentHumidity = results.main.humidity;
-        // const currentWind = results.wind.speed;
-        // // const currentUVIndex = 
-        // for ()
-
-        // currentWeatherData.append
+        // $("currentWeatherImg").attr('src', weatherIconURL);
+        $("#currentTemp").text("Temperature: " + currentTemp + " °F");
+        $("#currentHumidity").text("Humidity: " + currentHumidity + " %");
+        $("#currentWind").text("Wind Speed: " + currentWind + " MPH");
+        // $("#currentUVIndex").text("Temperature:" + currentUVIndex);
 
 
-    // localStorage.setItem(searchedCity, weatherData);
+
+    // localStorage.setItem(cityName, weatherData);
 
 }});
 
@@ -67,14 +68,16 @@ $(document).ready(function () {
 // psuedo-code
 // 1. Users can search for city in the search box -
 // 2. An error message appears if the city is not recognised -
-// 2. The name of the city and date display -
-// 3. Todays temp, icon, humidity, wind, UV display in the box
-// 4. The five day forecast is populated
-// 5. Searched cities appear in a list of previously searched for
+// 3. The name of the city and date display -
+// 4. Todays temp, humidity, wind, display on search -
+// 5. Todays weather icon displays
+// 6. The UV index is displayed for today
+// 7. The five day forecast is populated
+// 8. Searched cities appear in a list of previously searched for
 
-// 6. When clear button is pressed, the search history is deleted -
+// 9. When clear button is pressed, the search history is deleted -
 
-// 7. The card footers are updated to say when it was last updated
+// 10. The card footers are updated to say when it was last updated
 // function dateLastModified() {
 //     var x = new Date(document.lastModified);
 //     document.getElementById("demo").innerHTML = x;
