@@ -21,6 +21,7 @@ $("#searchBtn").click(function searchWeather() {
         showFiveDayForecast();
         $("#errorMsg").hide();
     }).catch(function (error) {
+        console.log("Request failed: city name not recognised");
         $("#errorMsg").show();
     });
 
@@ -178,7 +179,7 @@ $(document).ready(function () {
 // 4. Todays temp, humidity, wind, display on search -
 // 5. Todays weather icon displays -
 // 6. The UV index is displayed for today -
-// 7. The five day forecast is populated
+// 7. The five day forecast is populated -
 // 8. Searched cities appear in a list of previously searched for
 // 9. When clear button is pressed, the search history is deleted -
 // 10. The card footers are updated to say when it was last updated -

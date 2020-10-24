@@ -79,6 +79,13 @@ h5 {
     padding-top: 15px;
 }
 
+#errorMsg {
+    margin: 10px 0px 0px 0px;
+    padding: 10px 8px 10px 8px;
+    width: fit-content;
+
+}
+
 
 /* Card styling */
 
