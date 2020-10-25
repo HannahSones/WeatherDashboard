@@ -156,47 +156,21 @@ function getSearchHistory() {
 };
 
 
-// Add most recent search on page load
-// function loadMostRecentSearch() {
-
-//     const getStoredSearches = localStorage.getItem("searchHistory");
-//     const storedSearches = JSON.parse(getStoredSearches);
-
-//     if (storedSearches.length > 0) {
-//       const mostRecentSearch = (storedSearches[0]);
-//       console.log(mostRecentSearch);
-//       (searchedCity).value = mostRecentSearch;
-
-//     } else {
-//       $("#currentForecast").empty();
-//       $("#fiveDayForecast").empty();
-//     }
-//   };
-
-
 // Gets most recent search history to display
 function displayMostRecentSearch() {
 
     const getStoredSearches = localStorage.getItem("searchHistory");
     const storedSearches = JSON.parse(getStoredSearches);
 
-    if (storedSearches.length > 0) {
+    if (storedSearches != null && storedSearches.length > 0) {
         const mostRecentSearch = (storedSearches[0]);
         console.log(mostRecentSearch);
         (searchedCity).value = mostRecentSearch;
 
         const queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + mostRecentSearch + "&units=metric&appid=" + APIKey;
-        console.log("Todays weather URL", queryURL);
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (weatherData) {
-            updateResults();
-            showFiveDayForecast();
-            $("#errorMsg").hide();
-        });
-
-
+        console.log("Most recent URL", queryURL);
+        
+        
     } else {
         $("#currentForecast").empty();
         $("#fiveDayForecast").empty();
