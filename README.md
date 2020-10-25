@@ -41,13 +41,13 @@ I took advantage of having no predetermined style sheet with this project and us
 -----------
 ## Finished output
 The screen you are first presented with, when first loading the Weather Dashboard.
-![Weather Dashboard inital homepage](#)
+![Weather Dashboard inital homepage](https://github.com/HannahSones/WeatherDashboard/blob/main/assets/Screengrabs/WeatherDashboard%20HomeScreen.png)
 Example of a city search displaying the current weather and 5-day forecast.
-![Example of search](#)
+![Example of search](https://github.com/HannahSones/WeatherDashboard/blob/main/assets/Screengrabs/WeatherDashboard%20ExampleSearch.png)
 The search history is displayed on the left-hand side.
-![Search history](#)
+![Search history](https://github.com/HannahSones/WeatherDashboard/blob/main/assets/Screengrabs/WeatherDashboard%20SearchHistory.png)
 If the user doesn't enter a correct city or leaves the search box blank, an error message will appear on screen.
-![Error message](#)
+![Error message](https://github.com/HannahSones/WeatherDashboard/blob/main/assets/Screengrabs/WeatherDashboard%20ErrorMessage.png)
 
 -------------
 ## Improvements
