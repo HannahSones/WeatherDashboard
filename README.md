@@ -6,6 +6,7 @@ Build a weather dashboard that will run in the browser and feature dynamically u
   * [Built using](#built-using)
 * [Functionality](#functionality)
 * [Finished output](#finished-output)
+* [Improvements](#improvements)
 * [Link to application](#link-to-deployed-application)
 
 ----------
@@ -35,8 +36,6 @@ I took advantage of having no predetermined style sheet with this project and us
 * Once a user searches for a city in the search bar, they are presented with the current weather conditions as well as a future, 5-day forecast for that city. The city is then also added to the search history container on the left-hand side.
 * For the current weather conditions, the user is shown the city name, today's date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index. The UV index gives a coloured background to indicate the severity of the conditions.
 * The 5-day forecast displays the date, an icon representation of weather conditions, the temperature, and the humidity.
-* If a user selects a city from the search history list, they are presented again with the current, and future conditions for that city.
-* When a user reopens the weather dashboard, they are presented with the last searched city results.
 * When the clear search history button is clicked, the search history in the left-hand side is cleared, information from local storage is cleared, and the page is refreshed to display a new, blank page.
 
 -----------
@@ -51,6 +50,11 @@ If the user doesn't enter a correct city or leaves the search box blank, an erro
 ![Error message](#)
 
 -------------
+## Improvements
+I struggled to get the most recent search to display when the page reloads. Similarly, the search history buttons on the left-hand side are not linked. I need to do some additional reading to work out how to get these working as what I have tried so far does not work.
+As a result of trying multiple methods, my code is also slightly messy and repetitive. Once it's working as required I will need to look to refactor the code.
+
+--------------
 ## Link to deployed application
 https://hannahsones.github.io/WeatherDashboard/
 
