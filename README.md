@@ -17,6 +17,8 @@ To make it more user friendly for UK users, I added units=metric to the search U
 
 Each search is saved into local storage, and displays on the left-hand side in a list of previous searches so the user can easily access them again. When clicked, it will reload the weather data for that searched city. When the page is refreshed, it displays the values of the city last searched. I have also added a clear search history button to improve the user experience so that they can clear the data saved completely and start again. The clear schedule button empties the values saved in local storage as well as automatically refreshing the page so the user has a clean weather dashboard.
 
+I took advantage of having no predetermined style sheet with this project and used the opportunity to experiment with CSS and different properties. To make it responsive, I used a few pre-built Bootstrap elements, but then added my own styling to these to match the overall look.
+
 
 ## Built using
 * JavaScript
