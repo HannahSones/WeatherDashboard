@@ -13,6 +13,7 @@ searchWeather();
 });
 
 
+// When clear search history button is pressed, it clears all data from local storage and refreshes the page
 $("#clearSearchHistory").on("click", function () {
     console.log("clear button pressed");
     window.localStorage.clear();
@@ -172,29 +173,19 @@ function displayMostRecentSearch() {
         const mostRecentSearch = (storedSearches[0]);
         console.log(mostRecentSearch);
         (searchedCity).value = mostRecentSearch;
+        const mostRecentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + mostRecentSearch + "&units=metric&appid=" + APIKey;
+        console.log("Todays weather URL", mostRecentURL);
+        // searchWeather(mostRecentSearch);
 
-        const queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + mostRecentSearch + "&units=metric&appid=" + APIKey;
-        console.log("Todays weather URL", queryURL);
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function () {
-            searchWeather();
-            showFiveDayForecast();
-            $("#errorMsg").hide();
-        });
-    };
 };
-
-
-// When clear search history button is pressed, it clears all data from local storage and refreshes the page
+};
 
 
 
 $(document).ready(function () {
     
     getSearchHistory();
-    // displayMostRecentSearch();
+    displayMostRecentSearch();
 
 
 });
