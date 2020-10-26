@@ -50,7 +50,6 @@ $("#searchBtn").click(function searchWeather() {
         const uvIndexURL = uvAPI + lat + '&lon=' + lon + "&appid=" + APIKey;
         console.log("UV Index URL", uvIndexURL)
 
-
         $.ajax({
             url: uvIndexURL,
             method: 'GET'
@@ -61,15 +60,15 @@ $("#searchBtn").click(function searchWeather() {
                 '</span>');
 
             if (uvData.value < 3) {
-                $('.badge-pill').css('background-color', 'green');
+                $(".badge-pill").css("background-color", "green");
             } else if (uvData.value < 6) {
-                $('.badge-pill').css('background-color', 'yellow');
-            } else if (uvuvData.valueData < 8) {
-                $('.badge-pill').css('background-color', 'orange');
+                $(".badge-pill").css("background-color", "yellow");
+            } else if (uvData.value < 8) {
+                $(".badge-pill").css("background-color", "orange");
             } else if (uvData.value < 11) {
-                $('.badge-pill').css('background-color', 'red');
+                $(".badge-pill").css("background-color", "red");
             } else {
-                $('.badge-pill').css('background-color', 'purple');
+                $(".badge-pill").css("background-color", "purple");
             }
         });
 
@@ -77,7 +76,10 @@ $("#searchBtn").click(function searchWeather() {
         const currentTime = moment().format("LT");
         $(".dateLastModified").text("Last updated " + currentTime);
 
+        // Add searches to search history list
+        $("#previousSearches").find("ul").prepend($("<li>").addClass("list-group-item").text(cityName));
 
+        // Save searches into an array in local storage
         searchHistory.unshift(cityName)
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
@@ -92,7 +94,6 @@ function showFiveDayForecast() {
     const cityName = searchedCity.val();
     const forecastQueryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=" + APIKey;
     console.log("5 day forecast URL", forecastQueryURL);
-
 
     $.ajax({
         url: forecastQueryURL,
@@ -137,17 +138,17 @@ function showFiveDayForecast() {
     });
 };
 
+// Adds previous searches from local storage and displays them as list items under the search history
+function getSearchHistory() {
+    const storedSearches = localStorage.getItem("searchHistory");
 
-// function getSearchHistory() {
-//     const storedSearches = localStorage.getItem("searchHistory");
-
-//     if (storedSearches !== null) {
-//         searchHistory = storedSearches
-//         searchHistory.forEach(element => {
-//             $("#previousSearches").find("ul").append($("<li>").addClass("list-group-item").text(element));
-//         });
-//     }
-// }
+    if (storedSearches !== null) {
+        searchHistory = storedSearches
+        searchHistory.forEach(city => {
+            $("#previousSearches").find("ul").append($("<li>").addClass("list-group-item").text(city));
+        });
+    }
+};
 
 
 
@@ -161,5 +162,6 @@ $("#clearSearchHistory").on("click", function () {
 
 $(document).ready(function () {
 
+    // getSearchHistory();
 
 });
