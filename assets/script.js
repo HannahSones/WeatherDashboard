@@ -91,7 +91,7 @@ function searchWeather() {
         $("#previousSearches").find("ul").prepend($("<li>").addClass("list-group-item").text(cityName));
 
         // Save searches into an array in local storage
-        searchHistory.unshift(cityName)
+        searchHistory.unshift(cityName);
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
     }
@@ -149,12 +149,14 @@ function showFiveDayForecast() {
     });
 };
 
+
 // Adds previous searches from local storage and displays them as list items under the search history
 function getSearchHistory() {
-    const storedSearches = localStorage.getItem("searchHistory");
+    const getStoredSearches = localStorage.getItem("searchHistory");
+    const storedSearches = JSON.parse(getStoredSearches);
 
     if (storedSearches !== null) {
-        searchHistory = storedSearches
+        searchHistory = storedSearches;
         searchHistory.forEach(city => {
             $("#previousSearches").find("ul").append($("<li>").addClass("list-group-item").text(city));
         });
@@ -166,7 +168,7 @@ function displayMostRecentSearch() {
     const getStoredSearches = localStorage.getItem("searchHistory");
     const storedSearches = JSON.parse(getStoredSearches);
 
-    if (storedSearches != null && storedSearches.length > 0) {
+    if (storedSearches !== null && storedSearches.length > 0) {
         const mostRecentSearch = (storedSearches[0]);
         console.log(mostRecentSearch);
         (searchedCity).value = mostRecentSearch;
@@ -181,6 +183,8 @@ function displayMostRecentSearch() {
             showFiveDayForecast();
             $("#errorMsg").hide();
         });
+    };
+};
 
 
 // When clear search history button is pressed, it clears all data from local storage and refreshes the page
@@ -190,6 +194,7 @@ function displayMostRecentSearch() {
 $(document).ready(function () {
     
     getSearchHistory();
+    // displayMostRecentSearch();
 
 
-})}};
+});
