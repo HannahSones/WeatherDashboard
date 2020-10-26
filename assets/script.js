@@ -6,10 +6,21 @@ const APIKey = "f9de6cd0ea9d859bd4d2804e8ab205c3";
 let searchHistory = [];
 
 
-// search the current weather API using city name when clicked
-$("#searchBtn").click(function searchWeather() {
-    console.log("Search button pressed");
-    console.log("Searched city", searchedCity.val());
+$("#searchBtn").click(function() {
+console.log("Search button pressed");
+console.log("Searched city", searchedCity.val());
+searchWeather();
+});
+
+
+$("#clearSearchHistory").on("click", function () {
+    console.log("clear button pressed");
+    window.localStorage.clear();
+    window.location.reload();
+});
+
+
+function searchWeather() {
     const cityName = searchedCity.val();
     const queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=" + APIKey;
     console.log("Todays weather URL", queryURL);
@@ -84,7 +95,7 @@ $("#searchBtn").click(function searchWeather() {
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
     }
-});
+};
 
 // Getting the data for the 5-day forecast
 function showFiveDayForecast() {
@@ -150,18 +161,35 @@ function getSearchHistory() {
     }
 };
 
+function displayMostRecentSearch() {
+
+    const getStoredSearches = localStorage.getItem("searchHistory");
+    const storedSearches = JSON.parse(getStoredSearches);
+
+    if (storedSearches != null && storedSearches.length > 0) {
+        const mostRecentSearch = (storedSearches[0]);
+        console.log(mostRecentSearch);
+        (searchedCity).value = mostRecentSearch;
+
+        const queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + mostRecentSearch + "&units=metric&appid=" + APIKey;
+        console.log("Todays weather URL", queryURL);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function () {
+            searchWeather();
+            showFiveDayForecast();
+            $("#errorMsg").hide();
+        });
 
 
 // When clear search history button is pressed, it clears all data from local storage and refreshes the page
 
-$("#clearSearchHistory").on("click", function () {
-    window.localStorage.clear();
-    window.location.reload();
-});
 
 
 $(document).ready(function () {
+    
+    getSearchHistory();
 
-    // getSearchHistory();
 
-});
+})}};
