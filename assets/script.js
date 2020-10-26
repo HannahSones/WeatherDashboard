@@ -61,15 +61,15 @@ $("#searchBtn").click(function searchWeather() {
                 '</span>');
 
             if (uvData.value < 3) {
-                $(".badge-pill").css("background-color", "green");
+                $('.badge-pill').css('background-color', 'green');
             } else if (uvData.value < 6) {
-                $(".badge-pill").css("background-color", "yellow");
-            } else if (uvData.value < 8) {
-                $(".badge-pill").css("background-color", "orange");
+                $('.badge-pill').css('background-color', 'yellow');
+            } else if (uvuvData.valueData < 8) {
+                $('.badge-pill').css('background-color', 'orange');
             } else if (uvData.value < 11) {
-                $(".badge-pill").css("background-color", "red");
+                $('.badge-pill').css('background-color', 'red');
             } else {
-                $(".badge-pill").css("background-color", "purple");
+                $('.badge-pill').css('background-color', 'purple');
             }
         });
 
@@ -77,18 +77,14 @@ $("#searchBtn").click(function searchWeather() {
         const currentTime = moment().format("LT");
         $(".dateLastModified").text("Last updated " + currentTime);
 
-        // Add searches to search history list
-        $("#previousSearches").find("ul").prepend($("<li>").addClass("list-group-item").text(cityName));
 
-        // Save searches into an array in local storage
         searchHistory.unshift(cityName)
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
     }
 });
 
-
-// Getting and displaying the data for the 5-day forecast
+// Getting the data for the 5-day forecast
 function showFiveDayForecast() {
     $("#fiveDayForecast").show();
 
@@ -142,58 +138,28 @@ function showFiveDayForecast() {
 };
 
 
-// Adds previous searches from local storage and displays them as list items under the search history
-function getSearchHistory() {
-    const getStoredSearches = localStorage.getItem("searchHistory");
-    const storedSearches = JSON.parse(getStoredSearches);
+// function getSearchHistory() {
+//     const storedSearches = localStorage.getItem("searchHistory");
 
-    if (getStoredSearches !== null) {
-        searchHistory = storedSearches
-        searchHistory.forEach(city => {
-            $("#previousSearches").find("ul").append($("<li>").addClass("list-group-item").text(city));
-        });
-    }
-};
+//     if (storedSearches !== null) {
+//         searchHistory = storedSearches
+//         searchHistory.forEach(element => {
+//             $("#previousSearches").find("ul").append($("<li>").addClass("list-group-item").text(element));
+//         });
+//     }
+// }
 
 
-// Gets most recent search history to display
-function displayMostRecentSearch() {
 
-    const getStoredSearches = localStorage.getItem("searchHistory");
-    const storedSearches = JSON.parse(getStoredSearches);
+// When clear search history button is pressed, it clears all data from local storage and refreshes the page
 
-    if (storedSearches != null && storedSearches.length > 0) {
-        const mostRecentSearch = (storedSearches[0]);
-        console.log(mostRecentSearch);
-        (searchedCity).value = mostRecentSearch;
-
-        const queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + mostRecentSearch + "&units=metric&appid=" + APIKey;
-        console.log("Most recent URL", queryURL);
-        
-        
-    } else {
-        $("#currentForecast").empty();
-        $("#fiveDayForecast").empty();
-    }
-
-
-};
-
+$("#clearSearchHistory").on("click", function () {
+    window.localStorage.clear();
+    window.location.reload();
+});
 
 
 $(document).ready(function () {
 
-    $("#currentForecast").hide();
-    $("#fiveDayForecast").hide();
-
-
-    getSearchHistory();
-    displayMostRecentSearch();
-
-    // When clear search history button is pressed, all data is cleared from local storage and reloads the page
-    $("#clearSearchHistory").on("click", function () {
-        window.localStorage.clear();
-        window.location.reload();
-    });
 
 });
