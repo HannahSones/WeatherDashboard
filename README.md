@@ -51,8 +51,7 @@ If the user doesn't enter a correct city or leaves the search box blank, an erro
 
 -------------
 ## Improvements
-I struggled to get the most recent search to display when the page reloads. Similarly, the search history buttons on the left-hand side are not linked. I need to do some additional reading to work out how to get these working as what I have tried so far does not work.
-As a result of trying multiple methods, my code is also slightly messy and repetitive. Once it's working as required I will need to look to refactor the code.
+* When the page reloads with data for the most recent city searched, it re-adds this to the search history. I'd like to refactor the code so that it doesn't add to the search history for a second time.
 
 --------------
 ## Link to deployed application
