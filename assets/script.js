@@ -13,7 +13,15 @@ searchWeather();
 });
 
 
+$("body").on("click", ".list-group > a", function() {
+    console.log("list element clicked");
+    searchedCity.val($(this).text());
+    searchWeather();
+});
+
+
 // When clear search history button is pressed, it clears all data from local storage and refreshes the page
+
 $("#clearSearchHistory").on("click", function () {
     console.log("clear button pressed");
     window.localStorage.clear();
@@ -23,7 +31,7 @@ $("#clearSearchHistory").on("click", function () {
 
 function searchWeather() {
     const cityName = searchedCity.val();
-    const queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=" + APIKey;
+    const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=" + APIKey;
     console.log("Todays weather URL", queryURL);
     $.ajax({
         url: queryURL,
@@ -45,7 +53,7 @@ function searchWeather() {
         const currentWind = weatherData.wind.speed;
 
         const weatherIcon = weatherData.weather[0].icon;
-        const getWeatherIcon = "http://openweathermap.org/img/wn/";
+        const getWeatherIcon = "https://openweathermap.org/img/wn/";
         const weatherIconURL = getWeatherIcon + weatherIcon + ".png";
 
         $("#cityName").text(cityName + ' (' + date + ') ');
@@ -56,7 +64,7 @@ function searchWeather() {
 
 
         // Getting the UV Index value and updating the background colour depending on conditions
-        const uvAPI = "http://api.openweathermap.org/data/2.5/uvi?lat=";
+        const uvAPI = "https://api.openweathermap.org/data/2.5/uvi?lat=";
         const lat = weatherData.coord.lat;
         const lon = weatherData.coord.lon;
         const uvIndexURL = uvAPI + lat + '&lon=' + lon + "&appid=" + APIKey;
@@ -89,7 +97,7 @@ function searchWeather() {
         $(".dateLastModified").text("Last updated " + currentTime);
 
         // Add searches to search history list
-        $("#previousSearches").find("ul").prepend($("<li>").addClass("list-group-item").text(cityName));
+        $("#previousSearches").find(".list-group").prepend($("<a>").addClass("list-group-item list-group-item-action").text(cityName));
 
         // Save searches into an array in local storage
         searchHistory.unshift(cityName);
@@ -104,7 +112,7 @@ function showFiveDayForecast() {
 
     const searchedCity = $("#citySearch input[name='city']");
     const cityName = searchedCity.val();
-    const forecastQueryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=" + APIKey;
+    const forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=" + APIKey;
     console.log("5 day forecast URL", forecastQueryURL);
 
     $.ajax({
@@ -133,7 +141,7 @@ function showFiveDayForecast() {
 
         for (var j = 0; j < 5; j++) {
             const forecastArrDate = forecastArr[j].list.date;
-            const getWeatherIcon = "http://openweathermap.org/img/wn/";
+            const getWeatherIcon = "https://openweathermap.org/img/wn/";
             const forecastIconURL = getWeatherIcon + forecastArr[j].list.icon + ".png";
             const forecastArrTemp = Math.floor(forecastArr[j].list.temp);
             const forecastArrHumidity = forecastArr[j].list.humidity;
@@ -159,7 +167,7 @@ function getSearchHistory() {
     if (storedSearches !== null) {
         searchHistory = storedSearches;
         searchHistory.forEach(city => {
-            $("#previousSearches").find("ul").append($("<li>").addClass("list-group-item").text(city));
+            $("#previousSearches").find(".list-group").append($("<a>").addClass("list-group-item list-group-item-action").text(city));
         });
     }
 };
@@ -172,11 +180,8 @@ function displayMostRecentSearch() {
     if (storedSearches !== null && storedSearches.length > 0) {
         const mostRecentSearch = (storedSearches[0]);
         console.log(mostRecentSearch);
-        (searchedCity).value = mostRecentSearch;
-        const mostRecentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + mostRecentSearch + "&units=metric&appid=" + APIKey;
-        console.log("Todays weather URL", mostRecentURL);
-        // searchWeather(mostRecentSearch);
-
+        searchedCity.val(mostRecentSearch);
+        searchWeather();
 };
 };
 
