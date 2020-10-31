@@ -6,24 +6,22 @@ const APIKey = "f9de6cd0ea9d859bd4d2804e8ab205c3";
 let searchHistory = [];
 
 
+// Search weather function called when the click search button is pressed
 $("#searchBtn").click(function() {
 console.log("Search button pressed");
 console.log("Searched city", searchedCity.val());
 searchWeather();
 });
 
-
+// When a search history element is selected, the search weather function is run using that city
 $("body").on("click", ".list-group > a", function() {
-    console.log("list element clicked");
     searchedCity.val($(this).text());
     searchWeather();
 });
 
 
 // When clear search history button is pressed, it clears all data from local storage and refreshes the page
-
 $("#clearSearchHistory").on("click", function () {
-    console.log("clear button pressed");
     window.localStorage.clear();
     window.location.reload();
 });
@@ -41,12 +39,10 @@ function searchWeather() {
         showFiveDayForecast();
         $("#errorMsg").hide();
     }).catch(function (error) {
-        console.log("Request failed: city name not recognised");
         $("#errorMsg").show();
     });
 
     function updateResults(weatherData) {
-        console.log(weatherData)
 
         const currentTemp = Math.floor(weatherData.main.temp);
         const currentHumidity = weatherData.main.humidity;
@@ -68,7 +64,6 @@ function searchWeather() {
         const lat = weatherData.coord.lat;
         const lon = weatherData.coord.lon;
         const uvIndexURL = uvAPI + lat + '&lon=' + lon + "&appid=" + APIKey;
-        console.log("UV Index URL", uvIndexURL)
 
         $.ajax({
             url: uvIndexURL,
@@ -179,7 +174,6 @@ function displayMostRecentSearch() {
 
     if (storedSearches !== null && storedSearches.length > 0) {
         const mostRecentSearch = (storedSearches[0]);
-        console.log(mostRecentSearch);
         searchedCity.val(mostRecentSearch);
         searchWeather();
 };
