@@ -8,8 +8,6 @@ let searchHistory = [];
 
 // Search weather function called when the click search button is pressed
 $("#searchBtn").click(function() {
-console.log("Search button pressed");
-console.log("Searched city", searchedCity.val());
 searchWeather();
 });
 
@@ -30,7 +28,6 @@ $("#clearSearchHistory").on("click", function () {
 function searchWeather() {
     const cityName = searchedCity.val();
     const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=" + APIKey;
-    console.log("Todays weather URL", queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -108,7 +105,6 @@ function showFiveDayForecast() {
     const searchedCity = $("#citySearch input[name='city']");
     const cityName = searchedCity.val();
     const forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=" + APIKey;
-    console.log("5 day forecast URL", forecastQueryURL);
 
     $.ajax({
         url: forecastQueryURL,
